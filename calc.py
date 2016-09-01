@@ -1,4 +1,5 @@
 print(46 + 37 + 38)
-print(2016-1996)
+print(2016-1995)
 print(15 / 3)
 print(2**6)
+print(3**10)
