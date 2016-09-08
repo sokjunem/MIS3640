@@ -48,4 +48,16 @@ improve = ((score2 / score) - 1) * 100
 message = 'You have improved %.1f %% so far' % improve
 print(message)
 
+# Class 3 Exercise 3
+
+import time
+totalsecond = time.time()
+year = totalsecond / 3600 / 24 / 365
+days = (year - int('%d' % year)) * 365
+hours = (days - int('%d' % days)) * 24
+minutes = (hours - int('%d' % hours)) * 60
+seconds = (minutes - int('%d' % minutes)) * 60
+message = 'Starting from 1 January 1970, %d years %d days %d hours %d minutes and %d seconds has passed' % (year, days, hours, minutes, seconds)
+print(message)
+
 input()
