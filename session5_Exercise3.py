@@ -39,11 +39,11 @@ def arc(t, r, angle, x, y):
 def circle(t, r, x, y):
     arc(t, r, 360, x, y)
 
-def reset(rtangle):#reset the angle of the arrow
+def reset(rtangle):#reset the angle of the arrow - move to right direction
     turtle.setheading(0)
     turtle.rt(rtangle)
 
-def bf(t, length):
+def bf(t, length):#bow tie shape
     turtle.lt(30)
     for i in range(2):
         turtle.fd(length)
@@ -53,19 +53,16 @@ def bf(t, length):
         turtle.lt(120)
         turtle.fd(length)
 
-def mirror_circle(t, r, x, y):
-    circle(t, r, -x, -y)
-    turtle.rt(180)
-    circle(t, r, x, y)
     
 #Exercise3_1
 
-def shape_1(t, r):
+def shape_1(t, r, d, e):
+    new_position(d, e)
     bf(sj, r)
     turtle.lt(60)
     bf(sj, r)
     turtle.rt(120)
-    circle(sj, r, 0, -r)
+    circle(sj, r, d, e-r)
 
     x = math.radians(60) # coordination of small circles
     y = math.sin(x)
@@ -75,33 +72,40 @@ def shape_1(t, r):
     b = math.cos(a)
     c = (r/4) / b
 
-    mirror_circle(t, c, 0, z)
-    reset(90)
-    mirror_circle(t, c, z, 0)
+    def mirror_circle(t, r, f, g):
+        turtle.rt(180)
+        circle(t, r, f, g+z)
+        turtle.lt(90)
+        circle(t, r, f+z-(2*c), g)
 
-shape_1(sj, 150)
+    mirror_circle(t, c, d, e)
+    reset(0)
+    mirror_circle(t, c, d-z+c, e+c-z)
+
+shape_1(sj, 150, 50, 50)
 
 
 #Exercise 3_2
 
-def shape_2(t, r):
+def shape_2(t, r, x, y):
+    new_position(x, y)
     coordination = math.sqrt(r**2 - (r/2)**2)
 
-    circle(sj, r, 0, -r)
+    circle(sj, r, x, y-r)
     turtle.rt(60)
-    arc(sj, r, 120, -coordination, r/2)
+    arc(sj, r, 120, x-coordination, y+r/2)
     reset(120)
-    arc(sj, r, 120, 0, r)
+    arc(sj, r, 120, x, y+r)
     reset(180)
-    arc(sj, r, 120, coordination, r/2)
+    arc(sj, r, 120, x+coordination, y+(r/2))
     reset(240)
-    arc(sj, r, 120, coordination, -(r/2))
+    arc(sj, r, 120, x+coordination, y-(r/2))
     reset(300)
-    arc(sj, r, 120, 0, -r)
+    arc(sj, r, 120, x, y-r)
     reset(0)
-    arc(sj, r, 120, -coordination, -(r/2))
+    arc(sj, r, 120, x-coordination, y-(r/2))
 
-shape_2(sj, 100)
+shape_2(sj, 150, -50, 30)
 
 #Exercise3_3
 
