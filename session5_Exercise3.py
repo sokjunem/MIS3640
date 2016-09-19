@@ -58,6 +58,7 @@ def mirror_circle(t, r, x, y):
     turtle.rt(180)
     circle(t, r, x, y)
     
+#Exercise3_1
 
 def shape_1(t, r):
     bf(sj, r)
