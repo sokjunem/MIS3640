@@ -1,3 +1,4 @@
+
 import math
 
 def quadratic(a,b,c):
@@ -16,6 +17,6 @@ a = float(input('enter the number for a:'))
 b = float(input('enter the number for b:'))
 c = float(input('enter the number for c:'))
 
-print(quadratic(a,b,c))
+print(quadratic(a, b, c))
 
 input()
