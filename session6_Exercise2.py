@@ -8,7 +8,7 @@ def gcd(a, b):
         r = a - (int(a/b) * b)
         return gcd(b, r)
       
-print(gcd(1780,250))
+print(gcd(9, 18))
 
 # Exercise 2_4
 
