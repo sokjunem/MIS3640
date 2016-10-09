@@ -8,20 +8,30 @@ def binary_search(my_list, x):
     x: a number
     returns the index of x if x is in my_list, None if not.
     '''
-    high = len(my_list) - 1
-    low = 0
-    while True:
-        if x in my_list:
-            index = int((high + low) / 2.0)
-            if my_list[index] < x:
-                low = index + 1
-            if my_list[index] > x:
-                high = index - 1
-            if my_list[index] == x:
-                return index
-        else:
-            return None
+    # high = len(my_list) - 1
+    # low = 0
+    # while True:
+    #     if x in my_list:
+    #         index = int((high + low) / 2.0)
+    #         if my_list[index] < x:
+    #             low = index + 1
+    #         if my_list[index] > x:
+    #             high = index - 1
+    #         if my_list[index] == x:
+    #             return index
+    #     else:
+    #         return None
       
+    low = 0
+    high = len(my_list) - 1
+    while low <= high:
+        mid = int((low + high) / 2)
+        if x == my_list[mid]:
+            return mid
+        elif x < my_list[mid]:
+            high = mid - 1
+        else:
+            low = mid + 1
                   
         
 print(binary_search(test_list, -23))
