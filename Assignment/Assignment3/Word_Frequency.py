@@ -1,4 +1,6 @@
 import string
+import nltk.corpus
+
 def process_file(filename):
     """Makes a histogram that contains the words from a file.
     filename: string
@@ -7,6 +9,7 @@ def process_file(filename):
     """
     hist = {}
     fp = open(filename, encoding = 'utf8')
+    stop = set(stopwords.words('english'))
 
     for line in fp:
         
@@ -16,10 +19,11 @@ def process_file(filename):
         for word in line.split():
             word = word.strip(strippables)
             word = word.lower()
-
-            #update the histogram
-            hist[word] = hist.get(word, 0) + 1
         
+            if word not in stop:
+                #update the histogram
+                hist[word] = hist.get(word, 0) + 1
+            
     
     return hist
 
@@ -46,6 +50,7 @@ def most_common(hist):
     return temp
 
 def main(filename):
+    sentence = filename
     hist = process_file(filename)
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
@@ -60,3 +65,6 @@ def main(filename):
 main('conjuring_review_1.txt')
 main('conjuring_review_2.txt')
 main('conjuring_review_Combined.txt')
+
+sentence = open('conjuring_review_7.txt', 'r')
+sentence.close
