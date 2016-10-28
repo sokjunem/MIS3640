@@ -1,5 +1,7 @@
 import string
-import nltk.corpus
+import nltk
+from nltk.corpus import stopwords
+
 
 def process_file(filename):
     """Makes a histogram that contains the words from a file.
@@ -8,24 +10,25 @@ def process_file(filename):
     returns: map from each word to the number of times it appears.
     """
     hist = {}
-    fp = open(filename, encoding = 'utf8')
-    stop = set(stopwords.words('english'))
-
+    fp = open(filename)
+        
     for line in fp:
-        
-        line = line.replace('-', ' ')
-        strippables = string.punctuation + string.whitespace
-        
         for word in line.split():
-            word = word.strip(strippables)
             word = word.lower()
+
+            #update the histogram
+            hist[word] = hist.get(word, 0) + 1
         
-            if word not in stop:
-                #update the histogram
-                hist[word] = hist.get(word, 0) + 1
-            
-    
     return hist
+
+def clean_hist(hist):
+    
+    stop_words = stopwords.words('english')
+    new_hist = hist.copy()
+    for word in new_hist.keys():
+        if word in stop_words:
+            new_hist[word]=0
+    return new_hist
 
 def total_words(hist):
     """Returns the total of the frequencies in a histogram."""
@@ -54,17 +57,13 @@ def main(filename):
     hist = process_file(filename)
     print('Total number of words:', total_words(hist))
     print('Number of different words:', different_words(hist))
-
-    t = most_common(hist)
+    hist_after_removing_stopwords = clean_hist(hist)
+    t = most_common(hist_after_removing_stopwords)
     print('The most common words are:')
     for freq, word in t[0:20]:
         print(word, '\t', freq)
 
 
 
-main('conjuring_review_1.txt')
-main('conjuring_review_2.txt')
-main('conjuring_review_Combined.txt')
+main('review_combined.txt')
 
-sentence = open('conjuring_review_7.txt', 'r')
-sentence.close
